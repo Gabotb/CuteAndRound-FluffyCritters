@@ -20,7 +20,7 @@ public class CuteAndRound {
     // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "cuteandround";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public CuteAndRound(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();
