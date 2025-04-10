@@ -1,6 +1,10 @@
 package net.gabotb.cuteandround;
 
 import com.mojang.logging.LogUtils;
+import net.gabotb.cuteandround.block.ModBlocks;
+import net.gabotb.cuteandround.item.ModCreativeModTabs;
+import net.gabotb.cuteandround.item.ModItems;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -25,6 +29,11 @@ public class CuteAndRound {
     public CuteAndRound(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();
 
+        ModCreativeModTabs.register(modEventBus);
+        ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
+
+
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -37,6 +46,9 @@ public class CuteAndRound {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
+            event.accept(ModItems.BANANA.get());
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
