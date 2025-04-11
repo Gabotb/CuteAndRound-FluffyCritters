@@ -20,6 +20,10 @@ public class ModItems {
     public static final RegistryObject<Item> ALFALFA_SEEDS = ITEMS.register("alfalfa_seeds",
             () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> FLUFFY_GUIDE_BOOK = ITEMS.register("fluffy_guide_book",
+            () -> new Item(new Item.Properties().stacksTo(1)));
+
+
     public static final RegistryObject<Item> BANANA =
             ITEMS.register("banana", () ->
                     new Item(new Item.Properties()

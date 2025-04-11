@@ -20,6 +20,7 @@ public class ModCreativeModTabs {
                     .displayItems(((itemDisplayParameters, output) -> {
                         output.accept(ModItems.BANANA.get());
                         output.accept(ModItems.ALFALFA_SEEDS.get());
+                        output.accept(ModItems.FLUFFY_GUIDE_BOOK.get());
 
                         output.accept(ModBlocks.SAND_BATH_BLOCK.get());
                     }))

@@ -1,9 +1,11 @@
 package net.gabotb.cuteandround;
 
-import com.mojang.logging.LogUtils;
 import net.gabotb.cuteandround.block.ModBlocks;
+import net.gabotb.cuteandround.event.ModLootTables;
+import net.gabotb.cuteandround.init.ModMenuTypes;
 import net.gabotb.cuteandround.item.ModCreativeModTabs;
 import net.gabotb.cuteandround.item.ModItems;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -12,55 +14,53 @@ import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.gabotb.cuteandround.gui.FluffyCrittersGuideMenu;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.slf4j.Logger;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod(CuteAndRound.MOD_ID)
 public class CuteAndRound {
-    // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "cuteandround";
-    // Directly reference a slf4j logger
-    public static final Logger LOGGER = LogUtils.getLogger();
 
-    public CuteAndRound(FMLJavaModLoadingContext context) {
-        IEventBus modEventBus = context.getModEventBus();
+    public CuteAndRound() {
+
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModCreativeModTabs.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModMenuTypes.MENU_TYPES.register(modEventBus);
+        ModLootTables.init();
 
-
+        // Registrar eventos comunes
         modEventBus.addListener(this::commonSetup);
-        MinecraftForge.EVENT_BUS.register(this);
-
         modEventBus.addListener(this::addCreative);
 
+        // Registrar eventos de Forge
+        MinecraftForge.EVENT_BUS.register(this);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+        // Lógica común
     }
 
-    // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
             event.accept(ModItems.BANANA.get());
         }
     }
 
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
+        // Lógica del servidor
     }
 
-    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+            MenuScreens.register(ModMenuTypes.FLUFFY_CRITTERS_GUIDE_MENU.get(), FluffyCrittersGuideMenu::new);
         }
     }
 }
