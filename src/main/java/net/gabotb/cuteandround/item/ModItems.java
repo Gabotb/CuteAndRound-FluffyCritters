@@ -17,6 +17,8 @@ public class ModItems {
     public static final RegistryObject<Item> SAND_BATH_BLOCK_ITEM = ITEMS.register("sand_bath_block",
             () -> new BlockItem(ModBlocks.SAND_BATH_BLOCK.get(), new Item.Properties()));
 
+    public static final RegistryObject<Item> ALFALFA_SEEDS = ITEMS.register("alfalfa_seeds",
+            () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> BANANA =
             ITEMS.register("banana", () ->

@@ -19,6 +19,7 @@ public class ModCreativeModTabs {
                     .title(Component.translatable("creativetab.cuteandround_tab"))
                     .displayItems(((itemDisplayParameters, output) -> {
                         output.accept(ModItems.BANANA.get());
+                        output.accept(ModItems.ALFALFA_SEEDS.get());
 
                         output.accept(ModBlocks.SAND_BATH_BLOCK.get());
                     }))

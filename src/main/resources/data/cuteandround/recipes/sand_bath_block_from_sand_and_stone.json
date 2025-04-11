@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SG",
+    "GS"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:sand"
+    },
+    "G": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result": {
+    "item": "cuteandround:sand_bath_block",
+    "count": 1
+  }
+}
