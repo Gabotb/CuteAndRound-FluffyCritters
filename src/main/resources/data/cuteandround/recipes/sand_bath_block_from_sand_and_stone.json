@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [
-    "SG",
-    "GS"
+    "S-",
+    "-S"
   ],
   "key": {
     "S": {
       "item": "minecraft:sand"
     },
-    "G": {
+    "-": {
       "item": "minecraft:stone"
     }
   },

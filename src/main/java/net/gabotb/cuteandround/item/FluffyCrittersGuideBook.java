@@ -1,41 +1,47 @@
 package net.gabotb.cuteandround.item;
 
+import net.gabotb.cuteandround.init.ModMenuTypes;
 import net.gabotb.cuteandround.menu.FluffyCrittersGuideContainerMenu;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.MenuProvider;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.network.NetworkHooks;
 
 public class FluffyCrittersGuideBook extends Item {
-    // Constructor para el ítem
+
     public FluffyCrittersGuideBook(Properties properties) {
         super(properties);
     }
 
-    // Sobrescribimos el método useOn() para abrir la GUI al hacer clic derecho
     @Override
-    public InteractionResult useOn(UseOnContext context) {
-        if (!context.getLevel().isClientSide && context.getPlayer() != null) { // Asegura que esté en el servidor y el jugador no sea nulo
-            Player player = context.getPlayer();
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        if (!level.isClientSide) {
+            // Abrir GUI del menú personalizado (desde servidor)
+            player.openMenu(new SimpleMenuProvider(
+                    (id, inventory, p) -> new FluffyCrittersGuideContainerMenu(id, inventory),
+                    Component.translatable("gui.cuteandround.fluffy_critters_guide.title")
+            ));
 
-            // Abre la GUI personalizada cuando el jugador hace clic derecho con el libro
-            player.openMenu(new MenuProvider() {
-                @Override
-                public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-                    // Asegúrate de usar el contenedor del lado del servidor
-                    return new FluffyCrittersGuideContainerMenu(id, inventory, null);
-                }
-
-                @Override
-                public Component getDisplayName() {
-                    return Component.literal("Fluffy Critters Guide");
-                }
-            });
+            // Reproducir sonido desde el servidor
+            level.playSound(
+                    null, // null para que lo escuchen todos cerca
+                    player.blockPosition(),
+                    SoundEvents.BOOK_PAGE_TURN,
+                    player.getSoundSource(),
+                    1.0F,
+                    1.0F
+            );
         }
-        return InteractionResult.sidedSuccess(context.getLevel().isClientSide);
+
+        return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), level.isClientSide());
     }
 }

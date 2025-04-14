@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:item/hanheld",
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "cuteandround:item/picnic_basket_3d"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "cuteandround:item/picnic_basket_2d"
+    },
+      "ground": {
+        "parent": "cuteandround:item/picnic_basket_2d"
+      },
+        "fixed": {
+      "parent": "cuteandround:item/picnic_basket_2d"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=true": {
+      "model": "cuteandround:block/cozy_lantern_block_on"
+    },
+    "lit=false": {
+      "model": "cuteandround:block/cozy_lantern_block_off"
+    }
+  }
+}

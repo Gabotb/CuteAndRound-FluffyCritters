@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "cuteandround:block/cozy_lantern_block_off"
+  }
+}

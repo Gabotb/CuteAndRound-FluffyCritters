@@ -21,8 +21,11 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.BANANA.get());
                         output.accept(ModItems.ALFALFA_SEEDS.get());
                         output.accept(ModItems.FLUFFY_GUIDE_BOOK.get());
+                        output.accept(ModItems.PICNIC_BASKET.get());
+                        output.accept(ModItems.ALFALFA_BLOSSOM.get());
 
                         output.accept(ModBlocks.SAND_BATH_BLOCK.get());
+                        output.accept(ModBlocks.COZY_LANTERN_BLOCK.get().asItem());
                     }))
                     .build());
 
