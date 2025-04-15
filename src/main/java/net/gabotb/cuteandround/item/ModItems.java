@@ -2,10 +2,12 @@ package net.gabotb.cuteandround.item;
 
 import net.gabotb.cuteandround.CuteAndRound;
 import net.gabotb.cuteandround.block.ModBlocks;
+import net.gabotb.cuteandround.entity.ModEntities;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -23,6 +25,11 @@ public class ModItems {
 
     public static final RegistryObject<Item> ALFALFA_SEEDS = ITEMS.register("alfalfa_seeds",
             () -> new ItemNameBlockItem(ModBlocks.ALFALFA_CROP.get(), new Item.Properties()));
+    public static final RegistryObject<Item> LOP_BUNNY_SPAWN_EGG = ITEMS.register("lop_bunny_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.LOP_BUNNY, 0x7e9680, 0xc5d1c5,
+                    new Item.Properties()));
+
+
 
     // Registro actualizado para Fluffy Guide Book
     public static final RegistryObject<Item> FLUFFY_GUIDE_BOOK = ITEMS.register("fluffy_guide_book",
@@ -44,3 +51,4 @@ public class ModItems {
         ITEMS.register(eventBus);
     }
 }
+
