@@ -2,7 +2,6 @@ package net.gabotb.cuteandround.item;
 
 import net.gabotb.cuteandround.CuteAndRound;
 import net.gabotb.cuteandround.block.ModBlocks;
-import net.gabotb.cuteandround.entity.ModEntities;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -25,9 +24,6 @@ public class ModItems {
 
     public static final RegistryObject<Item> ALFALFA_SEEDS = ITEMS.register("alfalfa_seeds",
             () -> new ItemNameBlockItem(ModBlocks.ALFALFA_CROP.get(), new Item.Properties()));
-    public static final RegistryObject<Item> LOP_BUNNY_SPAWN_EGG = ITEMS.register("lop_bunny_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntities.LOP_BUNNY, 0x7e9680, 0xc5d1c5,
-                    new Item.Properties()));
 
 
 
